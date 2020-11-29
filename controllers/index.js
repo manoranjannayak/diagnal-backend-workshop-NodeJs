@@ -51,8 +51,6 @@ exports.getMetaData = async ( req, res) => {
               if($('meta[property="og:type"]').length > 0){
                 obj.type = $('meta[property="og:type"]').attr('content');
               }
-            // console.log("objobjobjobj",obj);
-          
           return res.status(200).send(obj);
         })
         .catch(function (error) {
