@@ -11,6 +11,9 @@ const cheerio = require('cheerio');
 exports.getMetaData = async ( req, res) => {
     try {
         let url = req.body.url;
+        if(!url){
+          return res.status(404).send("Please provide the URL")
+        }
         await axios.get(url)
         .then(async (response) => {
             const $ = await cheerio.load(response.data);
