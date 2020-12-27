@@ -1,7 +1,7 @@
-# Diagnal Backend Workshop ( NodeJS )
+# Backend ( NodeJS )
 METADATA SCRAPING FROM A GIVEN WEB PAGE URL
 
-This is a workshop project for Diagnal. This contain below following points:
+This is a sample project. This contain below following points:
 
 - Pass the URL of the site.
 - It will fetch data from metatags
