@@ -1,5 +1,5 @@
 {
-  "name": "diagnal_backend_workshop",
+  "name": "nodeJS_metadata_scrapping",
   "version": "1.0.0",
   "description": "metadata scrapping from the url",
   "main": "index.js",
@@ -14,6 +14,7 @@
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "jest": "^26.6.3",
+    "node-cache": "^5.1.2",
     "nodemon": "^2.0.6",
     "supertest": "^6.0.1"
   },

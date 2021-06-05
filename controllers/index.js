@@ -6,13 +6,24 @@
 
 const axios = require('axios');
 const cheerio = require('cheerio');
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
 
 //Get the data from the metatag by the given URL.
 exports.getMetaData = async ( req, res) => {
     try {
+      
         let url = req.body.url;
         if(!url){
           return res.status(404).send("Please provide the URL")
+        }
+
+        value = myCache.get( "myKey" );
+        console.log("value",value);
+        
+        if(value != undefined){
+          console.log("cache");
+          return res.status(200).send(value);
         }
         await axios.get(url)
         .then(async (response) => {
@@ -54,7 +65,20 @@ exports.getMetaData = async ( req, res) => {
               if($('meta[property="og:type"]').length > 0){
                 obj.type = $('meta[property="og:type"]').attr('content');
               }
-          return res.status(200).send(obj);
+
+              success = myCache.set( "myKey", obj, 10 );
+              value = myCache.get( "myKey" );
+              console.log("value",value);
+              
+              if ( value == undefined ){
+                console.log("not");
+                
+                return res.status(200).send(obj);
+              }else{
+                console.log("not cache");
+
+                return res.status(200).send(value);
+              }
         })
         .catch(function (error) {
           // Page not found error.
